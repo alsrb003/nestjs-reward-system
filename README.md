@@ -1,4 +1,67 @@
+
 # 백엔드 과제
+
+
+## 로컬 실행 방법
+
+1. 의존성 설치 (최초 1회)
+
+```bash
+npm install
+```
+
+2. NestJS 서버 실행
+
+```bash
+npm run start
+```
+
+또는 개발 모드 실행 (파일 변경 시 자동 반영):
+
+```bash
+npm run start:dev
+```
+
+> 기본 실행 포트: [http://localhost:3000]
+
+---
+
+
+## API 테스트
+
+프로젝트 루트에는 Postman 테스트용 컬렉션 파일이 포함되어 있습니다.
+
+- 파일명: `NestJS_Reward_API.postman_collection.json`
+- 사용법:
+  1. Postman 열기
+  2. Import > File > 해당 JSON 파일 선택
+  3. 환경변수 `baseUrl`, `adminToken`, `userToken` 등을 미리 설정하고 실행
+
+> 예시:
+> - `baseUrl`: http://localhost:3000
+> - `adminToken`: 로그인 후 발급받은 관리자 토큰
+> - `userToken`: 로그인 후 발급받은 사용자 토큰
+
+---
+
+
+## docker-compose 실행 방법
+
+### 최초 실행
+docker-compose up --build
+
+### 백그라운드 실행
+docker-compose up -d
+
+### 종료
+docker-compose down
+
+### 관련 파일
+- docker-compose.yml
+- Dockerfile
+
+---
+
 
 ## 해당 기능 개요
 
@@ -25,6 +88,7 @@
 * ADMIN, AUDITOR 는 전체 요청사항 조회 가능 (filter: eventId, status, userId)
 
 ---
+
 
 ## 사용 방법
 
@@ -104,12 +168,14 @@ Optional Query: ?status=APPROVED&eventId=...
 
 ---
 
+
 ## 기타
 
 * 조건 충족되는 경우, 유저가 보상 요청시 해당 보상 자동 지급
 * 조건 검사 함수 checkCondition() 커스터마이즈 가능
 
 ---
+
 
 ## 파일 구성
 
@@ -160,34 +226,3 @@ src/
 
 
 ```
-
-## docker-compose 실행 방법
-
-### 최초 실행
-docker-compose up --build
-
-### 백그라운드 실행
-docker-compose up -d
-
-### 종료
-docker-compose down
-
-### 관련 파일
-- docker-compose.yml
-- Dockerfile
-
-## API 테스트
-
-프로젝트 루트에는 Postman 테스트용 컬렉션 파일이 포함되어 있습니다.
-
-- 파일명: `NestJS_Reward_API.postman_collection.json`
-- 사용법:
-  1. Postman 열기
-  2. Import > File > 해당 JSON 파일 선택
-  3. 환경변수 `baseUrl`, `adminToken`, `userToken` 등을 미리 설정하고 실행
-
-> 예시:
-> - `baseUrl`: http://localhost:3000
-> - `adminToken`: 로그인 후 발급받은 관리자 토큰
-> - `userToken`: 로그인 후 발급받은 사용자 토큰
-
