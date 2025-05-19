@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  mongo:
+    image: mongo:6.0
+    container_name: nest_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+
+  app:
+    build: .
+    container_name: nest_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+    command: npm run start:dev
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URI: mongodb://root:example@mongo:27017/nest?authSource=admin
+
+volumes:
+  mongo_data:

@@ -1,0 +1,145 @@
+{
+  "info": {
+    "name": "NestJS Reward System API Test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "회원가입",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"userId\": \"user01\", \"username\": \"홍길동\", \"password\": \"pass1234\", \"role\": \"USER\"}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/register"
+        }
+      }
+    },
+    {
+      "name": "로그인",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"userId\": \"user01\", \"password\": \"pass1234\"}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/auth/login"
+        }
+      }
+    },
+    {
+      "name": "이벤트 등록",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{adminToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"name\": \"출석 이벤트\", \"description\": \"3일 이상 로그인 시 보상 지급\", \"conditionType\": \"LOGIN_COUNT\", \"conditionValue\": 3, \"startDate\": \"2024-05-20\", \"endDate\": \"2024-05-31\"}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/event"
+        }
+      }
+    },
+    {
+      "name": "보상 등록",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{adminToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"eventId\": \"<이벤트 ID>\", \"name\": \"100포인트\", \"type\": \"POINT\", \"quantity\": 100}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/reward"
+        }
+      }
+    },
+    {
+      "name": "보상 요청",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          },
+          {
+            "key": "Authorization",
+            "value": "Bearer {{userToken}}"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"eventId\": \"<이벤트 ID>\", \"rewardId\": \"<보상 ID>\"}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}/request"
+        }
+      }
+    },
+    {
+      "name": "내 요청 이력 조회",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{userToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/request"
+        }
+      }
+    },
+    {
+      "name": "전체 요청 이력 조회",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer {{adminToken}}"
+          }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/admin/requests?status=APPROVED"
+        }
+      }
+    }
+  ]
+}
