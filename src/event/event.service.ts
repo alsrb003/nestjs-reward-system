@@ -19,7 +19,7 @@ export class EventService {
   }
 
   async checkCondition(userId: string, eventId: string): Promise<boolean> {
-    // ✅ 실제로는 이벤트 조건 타입별로 로직을 분기해야 함
+    // 실제로는 이벤트 조건 타입별로 로직을 분기해야 함
     // 예시: 로그인 3일 연속, 친구 초대 5명 등
     // 지금은 테스트용으로 무조건 true 리턴
     return true;

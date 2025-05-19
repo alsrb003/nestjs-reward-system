@@ -29,7 +29,7 @@ export class AdminController {
   constructor(private readonly requestService: RequestService) {}
 
   @Get('requests')
-  @Roles('ADMIN', 'AUDITOR') // ✅ 관리자 또는 감사자만
+  @Roles('ADMIN', 'AUDITOR') // 관리자 또는 감사자만
   async getAllRequests(
     @Query('status') status?: 'APPROVED' | 'REJECTED',
     @Query('userId') userId?: string,

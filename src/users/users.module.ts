@@ -8,6 +8,6 @@ import { User, UserSchema } from './schemas/user.schema';
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
   ],
   providers: [UsersService],
-  exports: [UsersService], // auth.module 등에서 사용하려면 export 필요
+  exports: [UsersService],
 })
 export class UsersModule {}

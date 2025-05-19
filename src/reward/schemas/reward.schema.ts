@@ -12,7 +12,7 @@ export class Reward {
   quantity: number;
 
   @Prop({ type: Types.ObjectId, ref: 'Event', required: true })
-  eventId: Types.ObjectId; // 연결된 이벤트
+  eventId: Types.ObjectId;
 
   @Prop()
   type: 'POINT' | 'ITEM' | 'COUPON';

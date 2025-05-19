@@ -28,7 +28,7 @@ export class RewardService {
   }
 
   async giveReward(userId: string, rewardId: string) {
-    // ✅ 실제로는 포인트 지급, 아이템 추가, 수량 감소 등 수행
+    // 실제로는 포인트 지급, 아이템 추가, 수량 감소 등 수행
     // 예시는 단순 로그 처리
     console.log(`✅ ${userId}에게 보상 ${rewardId} 지급 완료`);
   }

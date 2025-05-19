@@ -26,7 +26,7 @@ export class UsersService {
         return newUser.save();
     }
 
-    // 모든 유저 조회 (테스트용)
+    // 모든 유저 조회
     async findAll(): Promise<User[]> {
         return this.userModel.find().exec();
     }

@@ -8,7 +8,7 @@ import { Model, Types } from 'mongoose';
 import { RewardService } from '../reward/reward.service';
 import { EventService } from '../event/event.service';
 
-// ✅ ObjectId 변환을 안전하게 처리하는 유틸
+// ObjectId 변환을 안전하게 처리하는 유틸
 function toObjectId(id: string | Types.ObjectId): Types.ObjectId {
     return id instanceof Types.ObjectId ? id : new Types.ObjectId(id);
 }
@@ -26,7 +26,7 @@ export class RequestService {
         const objectEventId = toObjectId(eventId);
         const objectRewardId = toObjectId(rewardId);
 
-        // ✅ 중복 요청 여부 확인
+        // 중복 요청 여부 확인
         const exists = await this.requestModel.findOne({
             userId: objectUserId,
             eventId: objectEventId,
@@ -37,13 +37,13 @@ export class RequestService {
             throw new ConflictException('이미 요청한 보상입니다.');
         }
 
-        // ✅ 이벤트 조건 검사
+        // 이벤트 조건 검사
         const isEligible = await this.eventService.checkCondition(userId, eventId);
 
-        // ✅ 상태 결정
+        // 상태 결정
         const status = isEligible ? 'APPROVED' : 'REJECTED';
 
-        // ✅ 요청 이력 저장
+        // 요청 이력 저장
         const record = await new this.requestModel({
             userId: objectUserId,
             eventId: objectEventId,
@@ -51,7 +51,7 @@ export class RequestService {
             status,
         }).save();
 
-        // ✅ 조건 충족 시 보상 지급
+        // 조건 충족 시 보상 지급
         if (isEligible) {
             await this.rewardService.giveReward(userId, rewardId);
         }
@@ -67,7 +67,7 @@ export class RequestService {
 
     async findByUser(userId: string) {
         return this.requestModel
-            .find({ userId: toObjectId(userId) }) // ✅ 안전한 ObjectId 변환
+            .find({ userId: toObjectId(userId) })
             .populate(['eventId', 'rewardId'])
             .exec();
     }

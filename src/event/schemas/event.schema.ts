@@ -12,10 +12,10 @@ export class Event {
   description: string;
 
   @Prop({ enum: ['LOGIN_COUNT', 'INVITE_COUNT'], required: true })
-  conditionType: 'LOGIN_COUNT' | 'INVITE_COUNT'; // ✅ 조건 타입
+  conditionType: 'LOGIN_COUNT' | 'INVITE_COUNT'; // 조건 타입
 
   @Prop({ required: true })
-  conditionValue: number; // ✅ 조건 기준값 (예: 3일, 5명 등)
+  conditionValue: number; // 조건 기준값 (예: 3일, 5명 등)
 
   @Prop()
   startDate: Date;
